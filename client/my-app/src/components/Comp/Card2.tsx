@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 type CategoryProps = {
   value: {
     url: string, 
-    title: string,
+    title: "Laptop" | "Clothes" | "Tech",
   }
   path: string,
 }

@@ -14,7 +14,7 @@ const Categories: React.FC = () => {
           <Card2
             value={{
               url: LAPTOP,
-              title: "LAPTOPS",
+              title: "Laptop",
             }}
             path = '/laptop'
           />

@@ -4,7 +4,7 @@
   "description": "Backend project for cartX ",
   "main": "server.js",
   "scripts": {
-    "start" : "nodemon", 
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ahmad ALi",
@@ -13,6 +13,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.4",
     "multer": "^1.4.5-lts.1",
