@@ -1,0 +1,5 @@
+export {default as first} from './f1.jpg'
+export {default as LAPTOP} from './laptops/LAPTOP.jpeg'
+export {default as clothes} from './Clothes/Clothes.jpg'
+export {default as tech} from './Tech/tech.jpg'
+export {default as newsletter} from './newsletter.jpg'
