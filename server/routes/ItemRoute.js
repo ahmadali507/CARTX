@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
-const Item = require('../models/Item');
-const ItemRouter = express.Router();
 const multer = require('multer');
+const Item = require('../models/Item');
+
+const ItemRouter = express.Router();
 
 // Multer storage configuration
 const storage = multer.diskStorage({
@@ -38,19 +39,24 @@ function checkFileType(file, cb) {
 // Route to add a new item
 ItemRouter.post('/additem', upload.single('photo'), async (req, res, next) => {
     try {
+        console.log(req.body)
+        console.log(req.file)
         const { name, description, category, price } = req.body;
-        const imageUrl = req.file.path;
+        const imgUrl = `/uploads/${req.file.filename}`; // Relative URL
+       console.log(imgUrl)
         const item = new Item({
             name,
             description,
             category,
             price,
-            imageUrl
+            imgUrl
         });
-
+        
         const savedItem = await item.save();
+        console.log(savedItem); 
         return res.status(200).json(savedItem);
     } catch (err) {
+        console.log("some error occured")
         return res.status(400).json({ error: err.message });
     }
 });
