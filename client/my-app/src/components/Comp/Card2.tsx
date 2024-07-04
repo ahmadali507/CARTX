@@ -16,10 +16,10 @@ type CategoryProps = {
   path: string,
 }
 
-const Card2: React.FC<CategoryProps> = ({ value, path }) => {
+const Card2: React.FC<CategoryProps> = ({ value, path }) => { 
   const navigate = useNavigate(); 
   const Navigate = (): void => {
-    navigate(path);
+    navigate('/api/additem'+path);
   };
   return (
     <div>

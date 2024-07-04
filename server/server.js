@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use('/items',ItemRouter); 
+app.use('/api',ItemRouter); 
 
 
 const CONNECTION_URL = "mongodb://localhost:27017/"

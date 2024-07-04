@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
-import {useQueryClient, useMutation} from 'react-query'
-
+import { useQueryClient, useMutation } from 'react-query'
 
 type FormData = {
-    name : string | undefined, 
-    price : string | undefined, 
-    description : string | undefined,
+    name: string | undefined, 
+    price: string | undefined, 
+    description: string | undefined,
     category: string | undefined, 
     photo: File | null,
 }
+
 const AddItems = () => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
@@ -17,9 +17,9 @@ const AddItems = () => {
         description: '',
         category: '',
         photo: null,
-    })
+    });
 
-    const handleChange = (e:any) => {
+    const handleChange = (e: any) => {
         const { name, value, files } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -27,40 +27,42 @@ const AddItems = () => {
         }));
     };
 
-    
-    const additem = async(data: FormData) => {
+    const additem = async () => {
         try {
-            console.log('Adding item:');
-            console.log(data);
-            
-            const requestURL = 'http://localhost:8000/api/additem'; 
-            const response = await Axios.post(requestURL, data); 
-            console.log(response.data); 
-            
-            
+            const requestURL = 'http://localhost:8000/api/additem';
+            const data = new FormData();
+            data.append('name', formData.name || '');
+            data.append('price', formData.price || '');
+            data.append('description', formData.description || '');
+            data.append('category', formData.category || '');
+            if (formData.photo) {
+                data.append('photo', formData.photo);
+            }
+
+            const response = await Axios.post(requestURL, data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            console.log(response.data);
         } catch (error) {
-            console.log(error); 
+            console.log(error);
         }
-        
-        
-        // Add your mutation logic here
     };
 
-    const AddMutation = () =>{
-        const queryClient = useQueryClient(); 
-        return useMutation({ mutationFn : additem, 
-            onSuccess : () => {
-                queryClient.invalidateQueries('items');
-            }
-        })
-    }
-    const handleSubmit = (e:any):void => {
-        const mutation = AddMutation(); 
-        mutation.mutate(formData); 
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+        mutationFn: additem,
+        onSuccess: () => {
+            queryClient.invalidateQueries('items');
+        }
+    });
+
+    const handleSubmit = (e: any) => {
         e.preventDefault();
+        mutate();
     };
-    
-    
+
     const array = ['Laptop', 'Clothes', 'Tech'];
 
     return (

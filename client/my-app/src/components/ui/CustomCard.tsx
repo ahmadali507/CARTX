@@ -9,27 +9,30 @@ import {
 } from "@/components/ui/card";
 import { Button } from "./button";
 
-type CardProps = {
+export  type CardProps = {
     description: string,
     imgUrl: string,
     title: string,
     price: number,
+    id?: string | null | undefined, 
+    __v?: number, 
+    category?: string  | undefined, 
 }
 
-const CustomCard: React.FC<CardProps> = ({ description, title, price, imgUrl }) => {
+const CustomCard  = ({ props } : {props : CardProps}) => {
   return (
     <div>
-      <Card className="bg-slate-300 h-[48vh] md:w-[20vw] lg:md:w-[20vw] sm:w-32">
+      <Card className="bg-slate-300 h-[50vh] md:w-[20vw] lg:md:w-[20vw] sm:w-32">
         <CardHeader>
-          <CardTitle className="text-center font-mono">{title}</CardTitle>
-          <img src={imgUrl} alt="" height={200} width={200} />
+          <CardTitle className="text-center font-mono">{props.title}</CardTitle>
+          <img src={props.imgUrl} alt="" height={200} width={300} />
         </CardHeader>
         <CardContent>
-          <p className="text-center text-bg-slate-200 font-medium">{description}</p>
+          <p className="text-center text-bg-slate-200 font-medium">{props.description}</p>
         </CardContent>
-        <CardFooter className="flex justify-between items-center flex-shrink-0">
-          <p>${price}</p>
-          <Button className="w-16 h-8 text-[0.7rem] bg-green-700">Add item</Button>
+        <CardFooter className="flex justify-between items-start  flex-shrink-0">
+          <p className="text-[1rem] ">Price  ${props.price}</p>
+          <Button className="w-24 h-10 text-[0.9rem] bg-green-700 relative bottom-1">Add item</Button>
         </CardFooter>
       </Card>
     </div>

@@ -16,21 +16,21 @@ const Categories: React.FC = () => {
               url: LAPTOP,
               title: "Laptop",
             }}
-            path = '/laptop'
+            path = '/Laptop'
           />
           <Card2
             value={{
               url: clothes,
               title: "Clothes",
-            }}
-            path = '/clothes'
+            }} 
+            path = '/Clothes'
           />
           <Card2
             value={{
               url: tech,
               title: "Tech",
             }}
-            path = '/tech'
+            path = '/Tech'
           />
         </div>
       </div>
