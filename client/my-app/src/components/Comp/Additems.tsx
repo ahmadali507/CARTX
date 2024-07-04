@@ -10,7 +10,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from '../ui/button';
-import { useNavigate } from 'react-router-dom';
 
 type FormData = {
     name: string | undefined;

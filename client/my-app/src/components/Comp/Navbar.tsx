@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../ui/button';
 import { useNavigate } from 'react-router-dom';
-import { ShoppingCart, ShoppingCartIcon } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 const Navbar: React.FC = () => {
 
    const navigate = useNavigate(); 
