@@ -85,20 +85,20 @@ const AddItems = () => {
 
     const handleAddItemClick = async () => {
 
-        try {
             setIsDialogOpen(false);
-            const requestUrl = 'http://localhost:8000/api/additem'; 
-            const response = await Axios.post(requestUrl, formData, {
-                headers : {
-                    "Content-Type" : 'multipart/form-data'
-                }
-            }); 
-            console.log(response?.data); 
+    //     try {
+    //         const requestUrl = 'http://localhost:8000/api/additem'; 
+    //         const response = await Axios.post(requestUrl, formData, {
+    //             headers : {
+    //                 "Content-Type" : 'multipart/form-data'
+    //             }
+    //         }); 
+    //         console.log(response?.data); 
             
-        } catch (error) {
-            console.log("Some Error occured", error); 
+    //     } catch (error) {
+    //         console.log("Some Error occured", error); 
             
-        }
+    //     }
 
     };
 
@@ -109,7 +109,7 @@ const AddItems = () => {
     return (
         <div>
             <Dialog open={isDialogOpen} onOpenChange={openConfirmationDialog}>
-                <DialogTrigger className = 'text-[0.8rem] p-2 bg-slate-800 hover:bg-green-500 hover:text-slate-900 rounded-[20px] '>Add Items</DialogTrigger>
+                <DialogTrigger className = 'text-[0.8rem] font-medium w-24 h-12 font-sans p-2 bg-slate-800 hover:bg-green-500 hover:text-slate-900 rounded-[20px] '>Add Items</DialogTrigger>
                 <DialogContent className='flex flex-col h-auto justify-center items-center gap-8 bg-transparent'>
                     <DialogHeader>
                         <DialogTitle className='text-center font-semibold  text-white text-2xl'>Add Details</DialogTitle>

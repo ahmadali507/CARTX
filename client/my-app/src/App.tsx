@@ -18,7 +18,6 @@ const App: React.FC= () => {
            </Routes>
        </Router>
 
-       <AddItems/>
     </>
   )
 }
