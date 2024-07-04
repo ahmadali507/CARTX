@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "./button";
 import { ShoppingCart } from 'lucide-react';
 
 

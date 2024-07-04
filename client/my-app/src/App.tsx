@@ -1,6 +1,6 @@
 import React from 'react'
 import Home from './Pages/Home'
-import {BrowserRouter as Router , Routes , Route}  from 'react-router-dom'
+import {BrowserRouter as Router , Routes , Route, BrowserRouter}  from 'react-router-dom'
 import Laptop from './Pages/Laptop'
 import Clothes from './Pages/Clothes'
 import Tech from './Pages/Tech'
@@ -22,5 +22,6 @@ const App: React.FC= () => {
     </>
   )
 }
+
 
 export default App
