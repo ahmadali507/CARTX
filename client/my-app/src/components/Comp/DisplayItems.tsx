@@ -1,4 +1,3 @@
-import React from 'react'
 import CustomCard, { CardProps } from '../ui/CustomCard'
 
 

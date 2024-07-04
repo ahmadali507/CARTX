@@ -1,7 +1,6 @@
 import Hero from '@/components/Comp/Hero'
 import Navbar from '@/components/Comp/Navbar'
 import React from 'react'
-import Axios from 'axios'
 import useCustomQuery from '@/components/Comp/hooks/useCustomQuery'
 import DisplayItems from '@/components/Comp/DisplayItems'
 
