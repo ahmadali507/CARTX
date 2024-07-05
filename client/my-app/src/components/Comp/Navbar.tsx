@@ -1,13 +1,17 @@
 import React from 'react';
 import { Button } from '../ui/button';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 const Navbar: React.FC = () => {
 
    const navigate = useNavigate(); 
 
-   const homeNavigate = (): void => {
-            navigate('/'); 
+   const signInNavigate = (): void => {
+            navigate('/auth/signIn'); 
+   }
+
+   const SignupNavigate = (): void =>{
+    navigate('/auth/signUp')
    }
    
     return (
@@ -23,14 +27,14 @@ const Navbar: React.FC = () => {
                     <div className="hidden md:block w-[75%] ">
                         <div className="ml-10 flex flex-row justify-center items-baseline space-x-4">
                             {/* Add your navigation links here */}
-                            <a  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" onClick={homeNavigate}>Home</a>
-                            <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">About</a>
-                            <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Contact</a>
+                            <Link  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" to = '/'>Home</Link>
+                            <Link to = '/aboutUs'  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">About</Link>
+                            <Link  to = 'Contact' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Contact</Link>
                         </div>
                     </div>
 
-                    <Button className='bg-slate-400 hover:bg-slate-200 hover:text-black absolute top-4 right-36'>Sign up</Button>
-                    <Button className='bg-green-400 hover:bg-slate-200 hover:text-black absolute top-4 right-12'>Log In</Button>
+                    <Button className='bg-slate-400 hover:bg-slate-200 hover:text-black absolute top-4 right-36' onClick={SignupNavigate}>Sign up</Button>
+                    <Button className='bg-green-400 hover:bg-slate-200 hover:text-black absolute top-4 right-12' onClick={signInNavigate} >Log In</Button>
                     <ShoppingCart size={36} color="#ffffff" strokeWidth={2.5} absoluteStrokeWidth className="hover:bg-slate-800 border-5 rounded-lg "/>              
 
                 </div>
