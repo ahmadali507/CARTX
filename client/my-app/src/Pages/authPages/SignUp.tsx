@@ -102,8 +102,8 @@ const SignUp = () => {
                         <Button className="w-[20vw] justify-center bg-red-700" type="submit">SIGN UP</Button>
                     </CardFooter>
                     <CardFooter className="flex flex-col">
-                        <div>
-                            Already Signed Up? <Link to='/auth/signIn' className='text-blue-400'>Sign In</Link>
+                        <div className='text-white'>
+                            Already Signed Up? <Link to='/auth/signIn' className='text-blue-400 text-[1.4rem]'>Sign In</Link>
                         </div>
                     </CardFooter>
                 </Card>            </form>
