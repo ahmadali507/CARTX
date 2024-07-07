@@ -1,4 +1,3 @@
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -7,7 +6,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,7 +31,7 @@ const SignIn = () => {
     resolver: zodResolver(LoginSchema),
   });
   const [response, setResponse] = useState<boolean | null>(null);
-  const [showDialogue, setShowDialogue] = useState("");
+  const [showDialogue, setShowDialogue] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -43,38 +41,42 @@ const SignIn = () => {
     axios
       .post(requestUrl, data)
       .then((res) => {
-        console.log(res);
-        setResponse(true);
-        setShowDialogue("Logged In Successfully");
-        navigate("/");
+        const { token, status } = res.data;
+        if (token) {
+          localStorage.setItem("token", token); // Store token in localStorage
+          setResponse(true);
+          setShowDialogue(status || "Logged In Successfully");
+          navigate("/"); // Redirect to homepage or dashboard after login
+        } else {
+          setResponse(false);
+          setShowDialogue("Token not received");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setResponse(false);
         setShowDialogue(err.response?.data?.error || "An error occurred");
       });
   };
 
   return (
-    <div className="flex flex-row justify-center border-2 border-black min-w-screen min-h-screen items-center bg-gradient-to-br from-slate-700 to-black">
+    <div className="flex flex-row justify-center min-w-screen min-h-screen items-center bg-gradient-to-br from-slate-700 to-black">
       <form onSubmit={handleSubmit(submitForm)}>
-        <Card className="border-2 border-transparent shadow-xl hover:shadow-slate-600 w-[30vw] justify-center text-center text-foreground backdrop-blur-lg bg-slate-900">
+        <Card className="shadow-xl hover:shadow-slate-600 w-[30vw] text-center text-foreground backdrop-blur-lg bg-slate-900">
           <CardHeader>
-            <CardDescription className="text-center text-2xl font-bold text-white">
+            <CardDescription className="text-2xl font-bold text-white">
               SIGN IN
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col justify-center gap-4">
               {response !== null && (
-                <div className={response ? "text-violet-500" : "text-red-300"}>
+                <div className={response ? "text-green-500" : "text-red-500"}>
                   {showDialogue}
                 </div>
               )}
               <div className="flex flex-col">
-                <Label className="text-1xl font-semibold text-white">
-                  Email
-                </Label>
+                <Label className="font-semibold text-white">Email</Label>
                 <Input
                   placeholder="Enter your email"
                   className="bg-slate-100 placeholder:font-mono"
@@ -86,9 +88,7 @@ const SignIn = () => {
               </div>
 
               <div className="flex flex-col">
-                <Label className="text-1xl font-semibold text-white">
-                  Password
-                </Label>
+                <Label className="font-semibold text-white">Password</Label>
                 <Input
                   placeholder="Enter your password"
                   className="bg-slate-100 placeholder:font-mono"
@@ -102,17 +102,11 @@ const SignIn = () => {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col pb-16">
-            <Button
-              className="w-[20vw] justify-center mt-4 bg-green-600 hover:bg-red-700"
-              type="submit"
-            >
+            <Button className="w-[20vw] mt-4 bg-green-600 hover:bg-red-700" type="submit">
               SIGN IN
             </Button>
             <Button className="mt-4 bg-green-600 hover:bg-red-700">
-              <Link
-                to="/auth/forget-password"
-                className="text-slate-300 w-[17.6vw] justify-center text-1xl font-semibold"
-              >
+              <Link to="/auth/forget-password" className="text-slate-300">
                 Forget Password
               </Link>
             </Button>

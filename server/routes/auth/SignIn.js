@@ -50,7 +50,7 @@ SignIn.post("/signIn", validate, async (req, res) => {
         _id: user._id,
       },
       "SECRET_KEY", // Make sure to use a strong secret key in production
-      { expiresIn: '1h' } // Optional: Set token expiration time
+      { expiresIn: '3h' } // Optional: Set token expiration time
     );
 
     res.json({ success: true, token, status: "User was found." });

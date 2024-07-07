@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const multer = require('multer');
 const Item = require('../../models/Item');
+const verifyToken = require('../../middlewares/auth')
 
 const ItemRouter = express.Router();
 
@@ -37,7 +38,7 @@ function checkFileType(file, cb) {
 }
 
 // Route to add a new item
-ItemRouter.post('/additem', upload.single('photo'), async (req, res, next) => {
+ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, res, next) => {
     try {
         console.log(req.body)
         console.log(req.file)
