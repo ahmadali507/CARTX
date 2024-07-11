@@ -8,7 +8,7 @@ type HeroProps = {
  
 const Hero: React.FC<HeroProps>= ({title , description}) => {
     return (
-        <section className="bg-black text-white py-20">
+        <section className="bg-black text-white py-20 border-b-2 border-b-slate-700">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col items-center justify-center">
                     <h1 className="text-4xl text-slate-300 md:text-6xl font-bold mb-6 text-center">

@@ -20,7 +20,6 @@ const App: React.FC= () => {
                 <Route path = '/auth/signIn' element = {<SignIn/>}/>
                 <Route path = '/auth/forget-password' element = {<ForgetPassword/>}/>
                 <Route path = '/auth/signUp' element = {<SignUp/>}/>
-
            </Routes>
        </Router>
 

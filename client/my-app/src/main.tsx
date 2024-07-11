@@ -7,7 +7,6 @@ import queryClient from './components/Comp/utils/fetchData'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
-
   <React.StrictMode>
       <App />
   </React.StrictMode>,
