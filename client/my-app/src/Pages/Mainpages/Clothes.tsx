@@ -5,9 +5,12 @@ import Navbar from '@/components/Comp/Navbar'
 import Newsletter from '@/components/Comp/Newsletter'
 import useCustomQuery from '@/components/Comp/hooks/useCustomQuery'
 import { CardProps } from '@/components/ui/CustomCard'
-import React, { useEffect, useState } from 'react'
+import { PriceContext, PriceProvider } from '@/context/context'
+import React, { useContext, useEffect, useState } from 'react'
 
 const Clothes: React.FC =() => {
+
+   
    
   const [displayData, setDisplayData] = useState<DisplayItemsProps | undefined>(); 
   const {data} = useCustomQuery('Clothes'); 
@@ -17,6 +20,8 @@ const Clothes: React.FC =() => {
   }, [data]); 
   return (
     <div>
+
+
        <Navbar/>
         <Hero
           title='WELCOME TO THE CLOTHES CATEGORY'
