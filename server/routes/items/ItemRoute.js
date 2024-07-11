@@ -3,6 +3,7 @@ const path = require('path');
 const multer = require('multer');
 const Item = require('../../models/Item');
 const verifyToken = require('../../middlewares/auth')
+const Brand = require('../../models/brand')
 
 const ItemRouter = express.Router();
 
@@ -42,7 +43,7 @@ ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, r
     try {
         console.log(req.body)
         console.log(req.file)
-        const { name, description, category, price } = req.body;
+        const { name, description, category, price , brand} = req.body;
         const imgUrl = `/uploads/${req.file.filename}`; // Relative URL
        console.log(imgUrl)
         const item = new Item({
@@ -52,7 +53,14 @@ ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, r
             price,
             imgUrl
         });
-        
+
+        const newBrand = new Brand({
+            brand, 
+            category,
+        })
+
+        const savedBrand =  await newBrand.save(); 
+        console.log(savedBrand); 
         const savedItem = await item.save();
         console.log(savedItem); 
         return res.status(200).json(savedItem);
@@ -66,7 +74,8 @@ ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, r
 ItemRouter.get('/additem/:category', async (req, res) => {
     try {
         const requiredItems = await Item.find({ category: req.params.category });
-        return res.status(200).json(requiredItems);
+        const requiredBrands = await Brand.find({category : req.params.category}); 
+        return res.status(200).json({items : requiredItems, brands : requiredBrands});
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }

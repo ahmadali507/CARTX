@@ -1,4 +1,4 @@
-import DisplayItems from '@/components/Comp/DisplayItems'
+import DisplayItems, { DisplayItemsProps } from '@/components/Comp/DisplayItems'
 import Footer from '@/components/Comp/Footer'
 import Hero from '@/components/Comp/Hero'
 import Navbar from '@/components/Comp/Navbar'
@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 
 const Tech: React.FC = () => {
 
-  const [displayData, setDisplayData] = useState<CardProps[]>(); 
+  const [displayData, setDisplayData] = useState<DisplayItemsProps | undefined>(); 
   const {data} = useCustomQuery('Tech'); 
   console.log(data); 
   useEffect(()=>{
@@ -22,7 +22,7 @@ const Tech: React.FC = () => {
           title='WELCOME TO THE CLOTHES CATEGORY'
           description='Here you will the latest and the best laptops of different world class brands With affordable prices. The laptops available here are the best ones. Laptops are so designed that our customers can get the most out of their money.'
         />
-        <DisplayItems  items = {displayData}/>
+        <DisplayItems  items = {displayData?.items} brands = {displayData?.brands}/>
         <Newsletter></Newsletter>
         <Footer></Footer>
     </div>

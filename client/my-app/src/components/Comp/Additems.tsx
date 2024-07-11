@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from '../ui/button';
 import toast, { Toaster } from 'react-hot-toast';
+import { StringDecoder } from 'string_decoder';
 
 type FormData = {
     name: string;
@@ -18,6 +19,7 @@ type FormData = {
     description: string;
     category: string;
     photo: File | null;
+    brand : string ; 
 };
 
 const AddItems = () => {
@@ -25,6 +27,7 @@ const AddItems = () => {
         name: '',
         price: '',
         description: '',
+        brand : '', 
         category: '',
         photo: null,
     });
@@ -57,10 +60,12 @@ const AddItems = () => {
             data.append('price', formData.price);
             data.append('description', formData.description);
             data.append('category', formData.category);
+            data.append('brand', formData.brand); 
             if (formData.photo) {
                 data.append('photo', formData.photo);
             }
 
+            console.log(formData); 
             const requestURL = 'http://localhost:8000/api/additem';
             const response = await Axios.post(requestURL, data, {
                 headers: {
@@ -117,6 +122,18 @@ const AddItems = () => {
                                         value={formData.name}
                                         onChange={handleChange}
                                         placeholder="Product Name"
+                                        className='w-[140%] h-[40px] border-4 rounded-md bg-gray-400 border-slate-400 px-2 placeholder:text-gray-600 text-black'
+                                        required
+                                    />
+                                </div>
+                                <div className='flex flex-col items-center justify-center text-white'>
+                                    Enter Brand of the product.
+                                    <input
+                                        type="text"
+                                        name="brand"
+                                        value={formData.brand}
+                                        onChange={handleChange}
+                                        placeholder="Product's Brand"
                                         className='w-[140%] h-[40px] border-4 rounded-md bg-gray-400 border-slate-400 px-2 placeholder:text-gray-600 text-black'
                                         required
                                     />
