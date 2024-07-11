@@ -51,7 +51,8 @@ ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, r
             description,
             category,
             price,
-            imgUrl
+            imgUrl, 
+            brand,
         });
 
         const newBrand = new Brand({

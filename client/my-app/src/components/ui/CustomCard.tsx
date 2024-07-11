@@ -13,6 +13,7 @@ export  type CardProps = {
     imgUrl: string,
     title: string,
     price: number,
+    brand : string, 
     id?: string | null | undefined, 
     __v?: number, 
     category?: string  | undefined, 

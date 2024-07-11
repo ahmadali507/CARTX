@@ -16,6 +16,10 @@ const ItemSchema = new Schema ({
         type : String, 
         required : true
     }, 
+    brand : {
+        type : String, 
+        required : true,
+    },
     imgUrl: {
         type : String, 
         required : true

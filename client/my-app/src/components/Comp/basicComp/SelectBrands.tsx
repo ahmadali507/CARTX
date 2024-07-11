@@ -12,24 +12,37 @@ import { Input } from "@/components/ui/input";
 import { brandProps } from "../DisplayItems";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { PriceContext } from "@/context/context";
+import { BrandContext, PriceContext } from "@/context/context";
 
 const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
   const { price, setPrice } = useContext(PriceContext);
-  const [localPrice, setLocalPrice] = useState(price == null  ? '' : price.toString);
+  const { selectedBrands, setBrand } = useContext(BrandContext); 
+
+  const [localPrice, setLocalPrice] = useState(price == null ? '' : price.toString());
+  
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocalPrice(e.target.value);
   };
 
+  const handleBrandChange = (brand: string) => {
+    setBrand((prevBrands) =>
+      prevBrands.includes(brand) ? prevBrands.filter((b) => b !== brand) : [...prevBrands, brand]
+    );
+  };
+
+
   const handleClick = () => {
-    const priceValue  = parseFloat(localPrice);
+    const priceValue = parseFloat(localPrice);
     if (!isNaN(priceValue)) {
       setPrice(priceValue);
     } else {
       console.log('Invalid price value');
     }
   };
+
+  // Extract unique brands
+  const uniqueBrands = Array.from(new Set(myprops?.map((item) => item.brand)));
 
   return (
     <div>
@@ -58,7 +71,7 @@ const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
                 <Input
                   className="bg-white w-[30%] text-black text-[1rem] font-bold"
                   type="number"
-                  value={localPrice === null ? "" : localPrice.toString()}
+                  value={localPrice === null ? "" : localPrice}
                   onChange={handlePriceChange}
                 />
               </div>
@@ -73,17 +86,19 @@ const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
             </SheetTitle>
             <SheetDescription>
               <div className="flex flex-col justify-center gap-4 items-start mt-10">
-                {myprops?.map((item, index) => (
+                {uniqueBrands.map((mybrand, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     <Checkbox
                       id={`checkbox-${index}`}
                       className="h-5 w-5 border-2 border-white bg-white"
+                      checked= {selectedBrands.includes(mybrand)}
+                      onChange={() => handleBrandChange(mybrand)}
                     />
                     <label
                       htmlFor={`checkbox-${index}`}
                       className="text-[1rem] text-slate-300 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
-                      {item.brand}
+                      {mybrand}
                     </label>
                   </div>
                 ))}
