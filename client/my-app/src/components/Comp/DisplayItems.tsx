@@ -18,7 +18,7 @@ const DisplayItems = ( {items, brands} : DisplayItemsProps) => {
   const {price} = useContext(PriceContext); 
   const {selectedBrands} = useContext(BrandContext); 
 
-
+  console.log(selectedBrands); 
   const filteredItems = items?.filter((item) => {
     const withinItems = price === null || item.price <= price; 
     const SelectedBrands = selectedBrands.length === 0 ||  selectedBrands.includes(item.brand); 

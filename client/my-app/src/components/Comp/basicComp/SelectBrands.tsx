@@ -28,7 +28,7 @@ const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
   const handleBrandChange = (brand: string) => {
     brand = brand.toLowerCase(); 
     setBrand((prevBrands) =>
-      prevBrands.includes(brand) ? prevBrands.filter((b) => b !== brand) : [...prevBrands, brand]
+      prevBrands.includes(brand) ? prevBrands.filter((b) => b.toLowerCase() !== brand) : [...prevBrands, brand]
     );
   };
 
@@ -53,12 +53,12 @@ const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
             <Menu className="size-10" />
           </SheetTrigger>
           <span className="text-[1.4rem] font-serif font-normal">
-            Showing <strong>this</strong> out of <strong>that</strong> items
+            Showing <strong>selected</strong> out of <strong>total</strong> items
           </span>
         </div>
         <SheetContent className="bg-slate-950 border-l border-l-slate-800 text-white">
           <SheetHeader>
-            <SheetTitle className="text-white text-[1.5rem] font-sans font-semibold">
+            <SheetTitle className="text-white text-[1.5rem] font-sans font-semibold text-center border-y-2 border-slate-600 py-2 mb-2">
               Price Range
             </SheetTitle>
             <SheetDescription>
@@ -77,26 +77,27 @@ const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
                 />
               </div>
               <div className="flex flex-row justify-end w-[94%] mt-6">
-                <Button className="bg-blue-600 w-[32%] text-[1rem]" onClick={handleClick}>
+                <Button className="bg-blue-600 w-[32%] text-[1rem] mb-3" onClick={handleClick}>
                   Set Price
                 </Button>
               </div>
             </SheetDescription>
-            <SheetTitle className="text-white text-[1.5rem] font-sans font-semibold mt-10">
+            <SheetTitle className="text-white text-[1.5rem] font-sans font-semibold  text-center border-y-2 border-slate-600 py-2 my-4">
               Brands Available
             </SheetTitle>
             <SheetDescription>
-              <div className="flex flex-col justify-center gap-4 items-start mt-10">
+              <div className="flex flex-col justify-center gap-4 items-start mt-5 max-h-56 text-xl  border-white " >
+                Select your Favourite brand
                 {uniqueBrands.map((mybrand, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     <Checkbox
                       id={`checkbox-${index}`}
-                      className="h-5 w-5 border-2 border-white bg-white"
+                      className="h-6 w-6 border-2 border-white bg-white"
                       onCheckedChange={() => handleBrandChange(mybrand)}
                     />
                     <label
                       htmlFor={`checkbox-${index}`}
-                      className="text-[1rem] text-slate-300 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-[1.2rem] text-slate-300 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       {mybrand}
                     </label>

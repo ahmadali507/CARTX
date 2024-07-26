@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '../ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
+import { CartComponent } from './cart-component';
 const Navbar: React.FC = () => {
 
    const navigate = useNavigate(); 
@@ -35,8 +36,7 @@ const Navbar: React.FC = () => {
 
                     <Button className='bg-slate-400 hover:bg-slate-200 hover:text-black absolute top-4 right-36' onClick={SignupNavigate}>Sign up</Button>
                     <Button className='bg-green-400 hover:bg-slate-200 hover:text-black absolute top-4 right-12' onClick={signInNavigate} >Log In</Button>
-                    <ShoppingCart size={36} color="#ffffff" strokeWidth={2.5} absoluteStrokeWidth className="hover:bg-slate-800 border-5 rounded-lg "/>              
-
+                     <CartComponent/>
                 </div>
             </div>
         </nav>

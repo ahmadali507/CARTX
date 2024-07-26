@@ -1,6 +1,6 @@
 "use client"
 import { createContext,  useState, ReactNode } from 'react';
-import { BrandContextType, PriceContextType } from './ContextTypes';
+import { BrandContextType, CartContextType, CartItems, PriceContextType, TotalPriceofItems } from './ContextTypes';
 
 
 const initialPriceContext: PriceContextType = {
@@ -29,4 +29,32 @@ export const BrandProvider = ({children} : {children : ReactNode}) =>{
     {children}
   </BrandContext.Provider>
 )}; 
+
+
+export const TotalPriceContext = createContext<TotalPriceofItems>({
+  total : 0, 
+  setTotal : () => {}
+}); 
+
+export const TotalPriceProvider = ({children} : {children : React.ReactNode}) =>{
+  const [total, setTotal] = useState<number>(0); 
+  return <TotalPriceContext.Provider value = {{total, setTotal}}>
+    {children}
+  </TotalPriceContext.Provider>
+}
+
+export const CartContext = createContext<CartContextType>({
+  cartItems : [], 
+  setCartItems : () => {},
+  totalItems : 0, 
+  settotalItems : () => {}, 
+});
+
+export const CartProvider = ({children} : {children : React.ReactNode}) =>{
+  const [cartItems, setCartItems] = useState<CartItems[]>([]);
+  const [totalItems, settotalItems] = useState<number>(0);  
+  return <CartContext.Provider value = {{cartItems, setCartItems, totalItems, settotalItems}}>
+    {children}
+  </CartContext.Provider>
+}
 

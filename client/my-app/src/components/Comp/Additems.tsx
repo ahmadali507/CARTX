@@ -13,9 +13,9 @@ import { Button } from '../ui/button';
 import toast, { Toaster } from 'react-hot-toast';
 import { StringDecoder } from 'string_decoder';
 
-type FormData = {
+export type itemData = {
     name: string;
-    price: string;
+    price: number ;
     description: string;
     category: string;
     photo: File | null;
@@ -23,9 +23,9 @@ type FormData = {
 };
 
 const AddItems = () => {
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState<itemData>({
         name: '',
-        price: '',
+        price: 0,
         description: '',
         brand : '', 
         category: '',
@@ -57,7 +57,7 @@ const AddItems = () => {
         try {
             const data = new FormData();
             data.append('name', formData.name);
-            data.append('price', formData.price);
+            data.append('price', formData.price.toString());
             data.append('description', formData.description);
             data.append('category', formData.category);
             data.append('brand', formData.brand.toLowerCase()); 
