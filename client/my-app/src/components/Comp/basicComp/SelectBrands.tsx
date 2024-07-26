@@ -26,6 +26,7 @@ const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
   };
 
   const handleBrandChange = (brand: string) => {
+    brand = brand.toLowerCase(); 
     setBrand((prevBrands) =>
       prevBrands.includes(brand) ? prevBrands.filter((b) => b !== brand) : [...prevBrands, brand]
     );
@@ -91,8 +92,7 @@ const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
                     <Checkbox
                       id={`checkbox-${index}`}
                       className="h-5 w-5 border-2 border-white bg-white"
-                      checked= {selectedBrands.includes(mybrand)}
-                      onChange={() => handleBrandChange(mybrand)}
+                      onCheckedChange={() => handleBrandChange(mybrand)}
                     />
                     <label
                       htmlFor={`checkbox-${index}`}

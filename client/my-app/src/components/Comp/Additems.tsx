@@ -60,7 +60,7 @@ const AddItems = () => {
             data.append('price', formData.price);
             data.append('description', formData.description);
             data.append('category', formData.category);
-            data.append('brand', formData.brand); 
+            data.append('brand', formData.brand.toLowerCase()); 
             if (formData.photo) {
                 data.append('photo', formData.photo);
             }

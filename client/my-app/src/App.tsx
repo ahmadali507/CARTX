@@ -7,13 +7,13 @@ import Tech from './Pages/Mainpages/Tech'
 import SignIn from './Pages/authPages/Login'
 import SignUp from './Pages/authPages/SignUp'
 import ForgetPassword from './Pages/authPages/ForgetPassword'
-import { PriceProvider } from './context/context'
+import { BrandProvider, PriceProvider } from './context/context'
 
 const App: React.FC= () => {
   return (
     <>
 
-
+<BrandProvider>
     <PriceProvider>
        <Router>
            <Routes>
@@ -26,8 +26,8 @@ const App: React.FC= () => {
                 <Route path = '/auth/signUp' element = {<SignUp/>}/>
            </Routes>
        </Router>
-
     </PriceProvider>
+</BrandProvider>
     </>
   )
 }
