@@ -1,22 +1,14 @@
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { z } from "zod";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import axios from "axios";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
-//defining a zod schema for the username and email and password...
+// Define a zod schema for the username, email, and password
 const SignUpSchema = z.object({
   username: z
     .string()
@@ -27,7 +19,7 @@ const SignUpSchema = z.object({
 
 type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 
-const SignUp = () => {
+const SignUpPage = () => {
   const {
     register,
     handleSubmit,
@@ -55,76 +47,67 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center border-2 border-black min-w-screen min-h-screen items-center bg-gradient-to-br from-slate-700 to-black">
+    <div className="flex h-screen w-full items-center justify-center bg-[#1e293b] p-4">
       <form onSubmit={handleSubmit(submitForm)}>
-        <Card className="border-2 border-transparent shadow-xl  hover:shadow-slate-600 w-[30vw] justify-center text-center text-foreground backdrop-blur-lg bg-slate-900">
-          <CardHeader>
-            <CardTitle className="text-2xl mb-4 text-green-800">
-              Welcome to WEBSITE
-            </CardTitle>
-            <CardDescription className="text-center text-1xl font-bold">
-              SIGN UP
-            </CardDescription>
+        <Card className="w-96 border-2 border-transparent shadow-xl hover:shadow-slate-600 backdrop-blur-lg bg-slate-900">
+          <CardHeader className="space-y-1 text-center">
+            <CardTitle className="text-2xl font-bold text-white">Sign Up TO CARTX</CardTitle>
+            <CardDescription className="text-muted-foreground">Create your account to get started.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-col justify-center gap-4">
-              {response !== null && (
-                <div className={response ? "text-violet-300" : "text-red-300"}>
-                  {showDialogue}
-                </div>
-              )}
-              <div className="flex flex-col">
-                <Label className="text-1xl font-semibold text-white">
-                  Username
-                </Label>
-                <Input
-                  placeholder="Enter your username"
-                  className="bg-slate-100 placeholder:font-mono"
-                  {...register("username")}
-                />
-                {errors.username && <span className="text-red-500">{errors.username.message}</span>}
+          <CardContent className="space-y-4">
+            {response !== null && (
+              <div className={response ? "text-violet-300" : "text-red-300"}>
+                {showDialogue}
               </div>
-
-              <div className="flex flex-col">
-                <Label className="text-1xl font-semibold text-white">
-                  Email
-                </Label>
-                <Input
-                  placeholder="Enter your email"
-                  className="bg-slate-100 placeholder:font-mono"
-                  {...register("email")}
-                />
-                {errors.email && <span className="text-red-500">{errors.email.message}</span>}
-              </div>
-
-              <div className="flex flex-col">
-                <Label className="text-1xl font-semibold text-white">
-                  Password
-                </Label>
-                <Input
-                  placeholder="Enter your password"
-                  className="bg-slate-100 placeholder:font-mono"
-                  type="password"
-                  {...register("password")}
-                />
-                {errors.password && <span className="text-red-500">{errors.password.message}</span>}
-              </div>
+            )}
+            <div className="space-y-2">
+              <Label htmlFor="username" className="text-white">
+                Username
+              </Label>
+              <Input
+                id="username"
+                placeholder="Enter your username"
+                className="bg-muted text-white"
+                {...register("username")}
+              />
+              {errors.username && <span className="text-red-500">{errors.username.message}</span>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-white">
+                Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                className="bg-muted text-white"
+                {...register("email")}
+              />
+              {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-white">
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                className="bg-muted text-white"
+                {...register("password")}
+              />
+              {errors.password && <span className="text-red-500">{errors.password.message}</span>}
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">
-            <Button
-              className="w-[20vw] justify-center bg-red-700"
-              type="submit"
-            >
-              SIGN UP
+            <Button className="w-full bg-red-700" type="submit">
+              Sign Up
             </Button>
-          </CardFooter>
-          <CardFooter className="flex flex-col">
-            <div className="text-white">
+            <div className="text-white mt-4">
               Already Signed Up?{" "}
-              <Link to="/auth/signIn" className="text-blue-400 text-[1.4rem]">
+              <a href="/auth/signIn" className="text-blue-400 text-[1.4rem]">
                 Sign In
-              </Link>
+              </a>
             </div>
           </CardFooter>
         </Card>
@@ -133,4 +116,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

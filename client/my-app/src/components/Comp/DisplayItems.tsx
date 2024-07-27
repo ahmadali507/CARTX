@@ -10,7 +10,7 @@ export type brandProps = {
   category : string, 
 }
 export type DisplayItemsProps = {
-  items: CardProps[] | undefined;
+  items: CardProps[];
   brands : brandProps[] | undefined
 };
 

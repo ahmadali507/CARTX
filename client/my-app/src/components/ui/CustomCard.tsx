@@ -23,12 +23,13 @@ export  type CardProps = {
 
 const CustomCard  = ({ item }  : {item: CardProps}) => {
 
+  console.log(item)
   return (
     <div>
       <Card className="bg-slate-950 h-auto md:w-[20vw] lg:md:w-[20vw] sm:w-32 border-[3px] border-slate-900 shadow-lg shadow-slate-800 hover:shadow-slate-400">
         <CardHeader className="flex flex-col justify-center items-center">
           <CardTitle className="text-center font-mono text-white">{item.name}</CardTitle>
-          <img src={`http://localhost:8000${item.imgUrl}`} alt="" height={200} width={300} className= "border-5 border-red-700  h-[14rem] w-[90%] bg-cover" />
+          <img src={item.imgUrl} alt="" height={200} width={300} className= "border-5 border-red-700  h-[14rem] w-[90%] bg-cover" />
         </CardHeader>
         <CardContent>
           <p className="text-center text-bg-slate-200 font-medium text-xl text-slate-200 h-[5rem]">{item.description}</p>

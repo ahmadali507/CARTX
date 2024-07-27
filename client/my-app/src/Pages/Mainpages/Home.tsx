@@ -1,3 +1,4 @@
+import Featured from "@/components/Comp/Carousel/Featured"
 import Categories from "@/components/Comp/Categories"
 import { DisplayItemsProps } from "@/components/Comp/DisplayItems"
 import Footer from "@/components/Comp/Footer"
@@ -10,7 +11,7 @@ import { useEffect, useState } from "react"
 
 function Home() {
    
-  const [displayData, setDisplayData]  = useState<DisplayItemsProps | undefined>(); 
+  const [displayData, setDisplayData]  = useState<DisplayItemsProps>(); 
 
   const {data} = useCustomQuery('all'); 
   useEffect(() =>{
@@ -26,6 +27,7 @@ function Home() {
         description = "This is CartX we provide the best of the solutions to our clients. Here you can find the best deals on different products including laptops, clothing items and tech items. Satisfaction of our clients is our foremost aim. "
     />
     <Categories/>
+    <Featured items = {displayData?.items}/>
     <Services></Services>
     <Newsletter></Newsletter>
     <Footer></Footer>

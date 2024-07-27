@@ -16,7 +16,7 @@ import { ShoppingCart, Trash2, X } from "lucide-react";
 import "../../index.css";
 
 export function CartComponent() {
-  const { cartItems, setCartItems, totalItems } = useContext(CartContext);
+  const { cartItems, setCartItems, totalItems, settotalItems } = useContext(CartContext);
   const [showCart, setShowCart] = useState(false);
 
   const handleClick = () => {
@@ -41,6 +41,7 @@ export function CartComponent() {
           : cartItem
       )
     );
+    settotalItems(totalItems+1); 
   };
 
   const decrementQuantity = (item: CardProps) => {
@@ -57,6 +58,7 @@ export function CartComponent() {
         )
         .filter((cartItem) => cartItem.quantity > 0)
     );
+    settotalItems(totalItems - 1)
   };
 
   const calculateTotalPrice = () => {

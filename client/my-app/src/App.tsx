@@ -9,12 +9,12 @@ import {
 import Laptop from "./Pages/Mainpages/Laptop";
 import Clothes from "./Pages/Mainpages/Clothes";
 import Tech from "./Pages/Mainpages/Tech";
-import SignIn from "./Pages/authPages/Login";
-import SignUp from "./Pages/authPages/SignUp";
+import SignInPage from "./Pages/authPages/Login";
 import ForgetPassword from "./Pages/authPages/ForgetPassword";
 import { BrandProvider, CartProvider, PriceProvider } from "./context/context";
 import AboutUsPage from "./Pages/Mainpages/AboutUsPage";
 import ContactusPage from "./Pages/Mainpages/ContactusPage";
+import SignUpPage from "./Pages/authPages/SignUp";
 
 const App: React.FC = () => {
   return (
@@ -30,12 +30,12 @@ const App: React.FC = () => {
                 <Route path="/api/additem/Laptop" element={<Laptop />} />
                 <Route path="/api/additem/Clothes" element={<Clothes />} />
                 <Route path="/api/additem/Tech" element={<Tech />} />
-                <Route path="/auth/signIn" element={<SignIn />} />
+                <Route path="/auth/signIn" element={<SignInPage />} />
                 <Route
                   path="/auth/forget-password"
                   element={<ForgetPassword />}
                 />
-                <Route path="/auth/signUp" element={<SignUp />} />
+                <Route path="/auth/signUp" element={<SignUpPage />} />
               </Routes>
             </Router>
           </PriceProvider>

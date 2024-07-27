@@ -1,14 +1,7 @@
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import axios from "axios";
 import { z } from "zod";
@@ -22,7 +15,7 @@ const LoginSchema = z.object({
 
 type LoginSchemaType = z.infer<typeof LoginSchema>;
 
-const SignIn = () => {
+function SignInPage() {
   const {
     register,
     handleSubmit,
@@ -30,9 +23,9 @@ const SignIn = () => {
   } = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
   });
+
   const [response, setResponse] = useState<boolean | null>(null);
   const [showDialogue, setShowDialogue] = useState<string>("");
-
   const navigate = useNavigate();
 
   const submitForm = (data: LoginSchemaType) => {
@@ -60,61 +53,70 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center min-w-screen min-h-screen items-center bg-gradient-to-br from-slate-700 to-black">
-      <form onSubmit={handleSubmit(submitForm)}>
-        <Card className="shadow-xl hover:shadow-slate-600 w-[30vw] text-center text-foreground backdrop-blur-lg bg-slate-900">
-          <CardHeader>
-            <CardDescription className="text-2xl font-bold text-white">
-              SIGN IN
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col justify-center gap-4">
+    <div className="min-h-[100dvh] bg-black flex items-center justify-center">
+      <div className="mx-auto max-w-md space-y-6">
+        <div className="card bg-gray-950 p-6 space-y-6 shadow-lg rounded-lg h-96">
+          <form onSubmit={handleSubmit(submitForm)}>
+            <div className="space-y-2 text-center">
+              <h1 className="text-3xl font-bold text-white">Sign In</h1>
+              <p className="text-gray-400">
+                Enter your email and password to access your account.
+              </p>
+            </div>
+            <div className="space-y-4">
               {response !== null && (
                 <div className={response ? "text-green-500" : "text-red-500"}>
                   {showDialogue}
                 </div>
               )}
-              <div className="flex flex-col">
-                <Label className="font-semibold text-white">Email</Label>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-white">
+                  Email
+                </Label>
                 <Input
-                  placeholder="Enter your email"
-                  className="bg-slate-100 placeholder:font-mono"
+                  id="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                  className="bg-gray-700 text-white"
                   {...register("email")}
                 />
                 {errors.email && (
                   <span className="text-red-500">{errors.email.message}</span>
                 )}
               </div>
-
-              <div className="flex flex-col">
-                <Label className="font-semibold text-white">Password</Label>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password" className="text-white">
+                    Password
+                  </Label>
+                  <Link
+                    to="/auth/forget-password"
+                    className="text-sm font-medium underline underline-offset-4 hover:text-blue-500 text-gray-400"
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
                 <Input
-                  placeholder="Enter your password"
-                  className="bg-slate-100 placeholder:font-mono"
+                  id="password"
                   type="password"
+                  required
+                  className="bg-gray-700 text-white mb-10"
                   {...register("password")}
                 />
                 {errors.password && (
                   <span className="text-red-500">{errors.password.message}</span>
                 )}
               </div>
+              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                Sign In
+              </Button>
             </div>
-          </CardContent>
-          <CardFooter className="flex flex-col pb-16">
-            <Button className="w-[20vw] mt-4 bg-green-600 hover:bg-red-700" type="submit">
-              SIGN IN
-            </Button>
-            <Button className="mt-4 bg-green-600 hover:bg-red-700">
-              <Link to="/auth/forget-password" className="text-slate-300">
-                Forget Password
-              </Link>
-            </Button>
-          </CardFooter>
-        </Card>
-      </form>
+          </form>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
-export default SignIn;
+export default SignInPage

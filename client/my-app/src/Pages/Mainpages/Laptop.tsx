@@ -10,7 +10,7 @@ import Footer from '@/components/Comp/Footer'
 const Laptop: React.FC = () => {
 
   
-   const [displayData, setDisplayData]  = useState<DisplayItemsProps | undefined>(); 
+   const [displayData, setDisplayData]  = useState<DisplayItemsProps>(); 
 
    const {data} = useCustomQuery('Laptop'); 
    useEffect(() =>{
