@@ -12,23 +12,32 @@ const SignIn = require('./routes/auth/SignIn')
 const register = require('./routes/auth/Register')
 const forgetPassRoute = require('./routes/auth/ForgetPassword')
 const ItemRouter = require('./routes/items/ItemRoute');
+const sendEmailRouter = require('./routes/contactus/sendEmail');
 
 
+const corsOptions = {
+    origin: 'http://localhost:5173', // Replace with your production frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+  };
 
 app.use(cookieParser()); 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+require('dotenv').config();
 
 
 
 app.use('/auth',  register, SignIn, forgetPassRoute); 
 app.use('/api', ItemRouter);
+app.use( sendEmailRouter); 
 
-const CONNECTION_URL = "mongodb://localhost:27017/";
+const CONNECTION_URL_AUTH = process.env.CONNECTION_URL;
 
-mongoose.connect(CONNECTION_URL).then(() => {
+mongoose.connect(CONNECTION_URL_AUTH).then(() => {
     console.log("DATABASE connected successfully");
 }).catch((e) => {
     console.log("Database not connected. " + e);

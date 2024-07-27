@@ -4,9 +4,10 @@ const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
         const token = authHeader.split(' ')[1]; // Bearer <token>
+        console.log(token)
         jwt.verify(token, 'SECRET_KEY', (err, user) => {
             if (err) {
-                return res.sendStatus(403); // Forbidden
+                return res.json({message : err.message}); // Forbidden
             }
             req.user = user;
             next();

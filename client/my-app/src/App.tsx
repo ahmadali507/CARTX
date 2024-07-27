@@ -13,6 +13,8 @@ import SignIn from "./Pages/authPages/Login";
 import SignUp from "./Pages/authPages/SignUp";
 import ForgetPassword from "./Pages/authPages/ForgetPassword";
 import { BrandProvider, CartProvider, PriceProvider } from "./context/context";
+import AboutUsPage from "./Pages/Mainpages/AboutUsPage";
+import ContactusPage from "./Pages/Mainpages/ContactusPage";
 
 const App: React.FC = () => {
   return (
@@ -23,6 +25,8 @@ const App: React.FC = () => {
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/aboutUs" element = {<AboutUsPage/>}/>
+                <Route path="/contact" element = {<ContactusPage/>}/>
                 <Route path="/api/additem/Laptop" element={<Laptop />} />
                 <Route path="/api/additem/Clothes" element={<Clothes />} />
                 <Route path="/api/additem/Tech" element={<Tech />} />
