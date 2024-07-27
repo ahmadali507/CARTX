@@ -41,7 +41,7 @@ const ForgetPassword = () => {
         try {
             const requestUrl = 'http://localhost:8000/auth/forget-password';
             const res = await axios.post(requestUrl, data);
-            console.log(res.data);
+            // console.log(res.data);
             setResponse(true);
             setShowDialogue('Password has been reset successfully');
             navigate('/signIn');

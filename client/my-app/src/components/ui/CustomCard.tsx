@@ -23,7 +23,7 @@ export  type CardProps = {
 
 const CustomCard  = ({ item }  : {item: CardProps}) => {
 
-  console.log(item)
+  // console.log(item)
   return (
     <div>
       <Card className="bg-slate-950 h-auto md:w-[20vw] lg:md:w-[20vw] sm:w-32 border-[3px] border-slate-900 shadow-lg shadow-slate-800 hover:shadow-slate-400">

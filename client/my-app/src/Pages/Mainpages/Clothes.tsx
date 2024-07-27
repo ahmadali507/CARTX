@@ -14,7 +14,7 @@ const Clothes: React.FC =() => {
    
   const [displayData, setDisplayData] = useState<DisplayItemsProps | undefined>(); 
   const {data} = useCustomQuery('Clothes'); 
-  console.log(data); 
+  // console.log(data); 
   useEffect(()=>{
     setDisplayData(data); 
   }, [data]); 

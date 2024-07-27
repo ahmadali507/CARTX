@@ -11,7 +11,7 @@ const Tech: React.FC = () => {
 
   const [displayData, setDisplayData] = useState<DisplayItemsProps | undefined>(); 
   const {data} = useCustomQuery('Tech'); 
-  console.log(data); 
+  // console.log(data); 
   useEffect(()=>{
     setDisplayData(data); 
   }, [data]); 

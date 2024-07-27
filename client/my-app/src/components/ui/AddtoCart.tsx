@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { Button } from "./button";
-import { CartContext } from "@/context/context";
+import { CartContext, TotalPriceContext } from "@/context/context";
 import { CardProps } from "./CustomCard";
 
 const AddtoCart = ({ item }: { item: CardProps }) => {
-  const { cartItems, setCartItems, settotalItems, totalItems } = useContext(CartContext);
+  const { cartItems, setCartItems, settotalItems, totalItems,  } = useContext(CartContext);
+  const {total, setTotal, quantitytotal, setQuantitytotal} = useContext(TotalPriceContext); 
 
   useEffect(() => {
     console.log(cartItems);
@@ -12,6 +13,7 @@ const AddtoCart = ({ item }: { item: CardProps }) => {
 
   const addtoCart = () => {
     settotalItems(totalItems + 1); 
+    setQuantitytotal(quantitytotal + 1); 
     const itemExists = cartItems.find(
       (cartItem) => cartItem.item.name === item.name
     );
@@ -28,11 +30,13 @@ const AddtoCart = ({ item }: { item: CardProps }) => {
             : cartItem
         )
       );
+      setTotal(total + item.price); 
     } else {
       setCartItems([
         ...cartItems,
         { item, quantity: 1, totalPrice: item.price },
       ]);
+      setTotal(total + item.price)
     }
   };
 

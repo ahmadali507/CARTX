@@ -17,7 +17,7 @@ function Home() {
   useEffect(() =>{
     setDisplayData(data); 
   }, [data])
-  console.log(displayData); 
+  // console.log(displayData); 
   
   return (
     <>

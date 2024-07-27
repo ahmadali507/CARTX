@@ -16,7 +16,7 @@ const Laptop: React.FC = () => {
    useEffect(() =>{
      setDisplayData(data); 
    }, [data])
-   console.log(displayData); 
+  //  console.log(displayData); 
   return (
     <div>
         <Navbar/>

@@ -33,12 +33,15 @@ export const BrandProvider = ({children} : {children : ReactNode}) =>{
 
 export const TotalPriceContext = createContext<TotalPriceofItems>({
   total : 0, 
+  quantitytotal : 0, 
+  setQuantitytotal : () => {}, 
   setTotal : () => {}
 }); 
 
 export const TotalPriceProvider = ({children} : {children : React.ReactNode}) =>{
   const [total, setTotal] = useState<number>(0); 
-  return <TotalPriceContext.Provider value = {{total, setTotal}}>
+  const [quantitytotal, setQuantitytotal] = useState<number>(0); 
+  return <TotalPriceContext.Provider value = {{total, setTotal, quantitytotal, setQuantitytotal}}>
     {children}
   </TotalPriceContext.Provider>
 }

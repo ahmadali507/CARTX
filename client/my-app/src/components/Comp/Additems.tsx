@@ -64,8 +64,6 @@ const AddItems = () => {
             if (formData.photo) {
                 data.append('photo', formData.photo);
             }
-
-            console.log(formData); 
             const requestURL = 'http://localhost:8000/api/additem';
             const response = await Axios.post(requestURL, data, {
                 headers: {
@@ -73,29 +71,23 @@ const AddItems = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
             console.log('Response data:', response.data);
-
         } catch (error: any) {
             console.error('Error adding item:', error.message);
         }
     };
-
     const queryClient = useQueryClient();
     const mutation = useMutation(additem, {
         onSuccess: () => {
             queryClient.invalidateQueries('items');
         },
     });
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         mutation.mutate();
         setIsDialogOpen(false);
     };
-
     const array = ['Laptop', 'Clothes', 'Tech'];
-
     return (
         <div>
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

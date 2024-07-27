@@ -33,14 +33,13 @@ export function ContactUsForm() {
   const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
     try {
       const token = localStorage.getItem('token'); 
-      console.log(token)
       const response = await axios.post("http://localhost:8000/contactus", data, {
         headers : {
           Authorization: `Bearer ${token}`,
           'Content-Type' : 'application/json',
         }
       });
-      console.log("Form submitted successfully:", response.data);
+      // console.log("Form submitted successfully:", response.data);
       // Handle success response
     } catch (error) {
       console.error("Error submitting form:", error);

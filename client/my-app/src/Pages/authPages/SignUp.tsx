@@ -36,7 +36,7 @@ const SignUpPage = () => {
     axios
       .post(requestUrl, data)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setResponse(true);
         setShowDialogue("USER SIGNED UP SUCCESSFULLY");
       })

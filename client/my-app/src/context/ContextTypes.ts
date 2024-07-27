@@ -14,7 +14,9 @@ export type BrandContextType = {
 
 export type TotalPriceofItems = {
     total : number; 
+    quantitytotal : number; 
     setTotal : React.Dispatch<React.SetStateAction<number>>; 
+    setQuantitytotal : React.Dispatch<React.SetStateAction<number>>
 }
 
 export type CartItems = {

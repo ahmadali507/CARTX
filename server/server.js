@@ -13,6 +13,7 @@ const register = require('./routes/auth/Register')
 const forgetPassRoute = require('./routes/auth/ForgetPassword')
 const ItemRouter = require('./routes/items/ItemRoute');
 const sendEmailRouter = require('./routes/contactus/sendEmail');
+const PaymentRouter = require('./routes/payment/Stripe');
 
 
 const corsOptions = {
@@ -31,9 +32,10 @@ require('dotenv').config();
 
 
 
-app.use('/auth',  register, SignIn, forgetPassRoute); 
-app.use('/api', ItemRouter);
-app.use( sendEmailRouter); 
+app.use('/auth',register,SignIn,forgetPassRoute); 
+app.use('/api',ItemRouter);
+app.use(sendEmailRouter); 
+app.use(PaymentRouter); 
 
 const CONNECTION_URL_AUTH = process.env.CONNECTION_URL;
 
