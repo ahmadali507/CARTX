@@ -74,6 +74,11 @@ ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, r
 // Route to get items by category
 ItemRouter.get('/additem/:category', async (req, res) => {
     try {
+        const category = req.params.category; 
+        if(category === 'all'){
+            const allItems = await Item.find(); 
+            return res.status(200).json({items : allItems});
+        }
         const requiredItems = await Item.find({ category: req.params.category });
         const requiredBrands = await Brand.find({category : req.params.category}); 
         return res.status(200).json({items : requiredItems, brands : requiredBrands});
@@ -81,5 +86,6 @@ ItemRouter.get('/additem/:category', async (req, res) => {
         return res.status(400).json({ error: error.message });
     }
 });
+
 
 module.exports = ItemRouter;

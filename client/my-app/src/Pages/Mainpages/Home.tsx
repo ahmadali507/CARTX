@@ -1,12 +1,23 @@
 import Categories from "@/components/Comp/Categories"
+import { DisplayItemsProps } from "@/components/Comp/DisplayItems"
 import Footer from "@/components/Comp/Footer"
 import Hero from "@/components/Comp/Hero"
+import useCustomQuery from "@/components/Comp/hooks/useCustomQuery"
 import Navbar from "@/components/Comp/Navbar"
 import Newsletter from "@/components/Comp/Newsletter"
 import Services from "@/components/Comp/services"
+import { useEffect, useState } from "react"
 
 function Home() {
- 
+   
+  const [displayData, setDisplayData]  = useState<DisplayItemsProps | undefined>(); 
+
+  const {data} = useCustomQuery('all'); 
+  useEffect(() =>{
+    setDisplayData(data); 
+  }, [data])
+  console.log(displayData); 
+  
   return (
     <>
     <Navbar/>
