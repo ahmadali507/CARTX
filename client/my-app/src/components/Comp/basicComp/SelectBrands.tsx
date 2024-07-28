@@ -16,7 +16,7 @@ import { BrandContext, PriceContext } from "@/context/context";
 
 const SelectBrands = ({ myprops }: { myprops: brandProps[] | undefined }) => {
   const { price, setPrice } = useContext(PriceContext);
-  const { selectedBrands, setBrand } = useContext(BrandContext); 
+  const {  setBrand } = useContext(BrandContext); 
 
   const [localPrice, setLocalPrice] = useState(price == null ? '' : price.toString());
   

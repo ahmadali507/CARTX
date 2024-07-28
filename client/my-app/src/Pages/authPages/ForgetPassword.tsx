@@ -39,7 +39,7 @@ const ForgetPassword = () => {
 
     const submitForm = async (data: ForgetPassSchemaT) => {
         try {
-            const requestUrl = 'http://localhost:8000/auth/forget-password';
+            const requestUrl = 'https://cartx-api.vercel.app/auth/forget-password';
             const res = await axios.post(requestUrl, data);
             // console.log(res.data);
             setResponse(true);

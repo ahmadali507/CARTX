@@ -29,7 +29,7 @@ function SignInPage() {
   const navigate = useNavigate();
 
   const submitForm = (data: LoginSchemaType) => {
-    const requestUrl = "http://localhost:8000/auth/signIn";
+    const requestUrl = "https://cartx-api.vercel.app/auth/signIn";
 
     axios
       .post(requestUrl, data)

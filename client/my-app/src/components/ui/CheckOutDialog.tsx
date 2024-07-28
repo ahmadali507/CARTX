@@ -15,39 +15,43 @@ type CouponDialogT = {
 
 const CheckOutDialog: React.FC<CouponDialogT> = ({ TotalPrice, TotalItems } ) => {
   const [couponCode, setCouponCode] = useState('');
-  const [message, setMessage] = useState('');
+  const [message] = useState('');
 
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const requestURL = "http://localhost:8000/create-checkout-session";
-      const requestData = {
-        totalItems: TotalItems,
-        totalPrice: TotalPrice , // Convert dollars to cents
-        couponCode: couponCode,
-      };
+        const requestURL = 'http://localhost:8000/create-checkout-session';
+        const requestData = {
+            totalItems: TotalItems,
+            totalPrice: TotalPrice,
+            couponCode: couponCode, // Convert dollars to cents
+        };
 
-      const response = await axios.post(requestURL, requestData);
-      if (!response) {
-        console.log("ERROR OCCURRED");
-        return;
-      }
+        const response = await axios.post(requestURL, requestData);
+        if (!response) {
+            console.log('ERROR OCCURRED');
+            return;
+        }
 
-      const { id } = response.data;
-      const stripe = await stripePromise;
+        const { id } = response.data;
+        const stripe = await stripePromise;
 
-      // Redirect to Stripe Checkout
-      const { error } = await stripe?.redirectToCheckout({
-        sessionId: id,
-      });
+        if (!stripe) {
+            console.error('Stripe has not loaded');
+            return;
+        }
 
-      if (error) {
-        console.error('Stripe Checkout Error:', error);
-      }
+        const result = await stripe.redirectToCheckout({
+            sessionId: id,
+        });
+
+        if (result.error) {
+            console.error('Stripe Checkout Error:', result.error.message);
+        }
     } catch (error) {
-      console.log("SOME ERROR OCCURRED", error);
+        console.log('SOME ERROR OCCURRED', error);
     }
-  };
+};
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import  { useContext, useEffect } from "react";
 import { Button } from "./button";
 import { CartContext, TotalPriceContext } from "@/context/context";
 import { CardProps } from "./CustomCard";

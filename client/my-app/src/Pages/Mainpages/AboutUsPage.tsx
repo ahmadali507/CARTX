@@ -1,5 +1,4 @@
 import { About } from '@/components/Comp/about'
-import React from 'react'
 
 const AboutUsPage = () => {
   return (

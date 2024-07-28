@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -32,11 +32,11 @@ const SignUpPage = () => {
   const [showDialogue, setShowDialogue] = useState("");
 
   const submitForm = (data: SignUpSchemaType) => {
-    const requestUrl = "http://localhost:8000/auth/register";
+    const requestUrl = "https://cartx-api.vercel.app/auth/register";
     axios
       .post(requestUrl, data)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setResponse(true);
         setShowDialogue("USER SIGNED UP SUCCESSFULLY");
       })

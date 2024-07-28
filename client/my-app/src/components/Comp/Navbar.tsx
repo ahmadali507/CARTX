@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from '../ui/button';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
 import { CartComponent } from './cart-component';
 const Navbar: React.FC = () => {
 

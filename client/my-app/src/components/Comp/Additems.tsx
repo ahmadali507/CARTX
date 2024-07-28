@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from '../ui/button';
 import toast, { Toaster } from 'react-hot-toast';
-import { StringDecoder } from 'string_decoder';
 
 export type itemData = {
     name: string;
@@ -64,7 +63,7 @@ const AddItems = () => {
             if (formData.photo) {
                 data.append('photo', formData.photo);
             }
-            const requestURL = 'http://localhost:8000/api/additem';
+            const requestURL = 'https://cartx-api.vercel.app/api/additem';
             const response = await Axios.post(requestURL, data, {
                 headers: {
                     Authorization: `Bearer ${token}`,

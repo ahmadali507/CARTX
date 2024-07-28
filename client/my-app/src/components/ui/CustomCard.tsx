@@ -5,8 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ShoppingCart } from 'lucide-react';
-import { CartComponent } from "../Comp/cart-component";
 import AddtoCart from "./AddtoCart";
 
 

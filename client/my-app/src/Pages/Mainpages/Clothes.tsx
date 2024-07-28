@@ -4,15 +4,13 @@ import Hero from '@/components/Comp/Hero'
 import Navbar from '@/components/Comp/Navbar'
 import Newsletter from '@/components/Comp/Newsletter'
 import useCustomQuery from '@/components/Comp/hooks/useCustomQuery'
-import { CardProps } from '@/components/ui/CustomCard'
-import { PriceContext, PriceProvider } from '@/context/context'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Clothes: React.FC =() => {
 
    
    
-  const [displayData, setDisplayData] = useState<DisplayItemsProps | undefined>(); 
+  const [displayData, setDisplayData] = useState<DisplayItemsProps>(); 
   const {data} = useCustomQuery('Clothes'); 
   // console.log(data); 
   useEffect(()=>{

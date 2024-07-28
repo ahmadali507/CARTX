@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from './button';
@@ -14,7 +14,7 @@ const CouponDialog = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/generate-coupon', { name, email });
+      const response = await axios.post('https://cartx-api.vercel.app/generate-coupon', { name, email });
       console.log(response)
       if (response.data) {
         setMessage(`Coupon code has been sent to your email!`);

@@ -1,4 +1,3 @@
-import React from 'react'
 import SelectBrands from './SelectBrands'
 import DropdownFilter from './DropdownFilter'
 import SelectItems from './SelectItems'

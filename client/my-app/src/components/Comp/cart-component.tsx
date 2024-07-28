@@ -1,4 +1,4 @@
-import { SVGProps, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
   Sheet,
   SheetTrigger,
@@ -14,12 +14,9 @@ import { CartContext, TotalPriceContext } from "@/context/context";
 import { CardProps } from "../ui/CustomCard";
 import { ShoppingCart, Trash2, X } from "lucide-react";
 import "../../index.css";
-import axios from "axios";
-import { loadStripe } from '@stripe/stripe-js';
 import CouponDialog from "../ui/MyDialog";
 import CheckOutDialog from "../ui/CheckOutDialog";
 
-const stripePromise = loadStripe('pk_test_51PZJNaDJuXMaBWwvaVH9rpEbJayHEH5fYIkT9PGep4kRvjRZYpfEG4BJPgCMlD3OyaE1ksAQlj5U5OcqppqcqnEg00NoCjlzdv'); // Add your Stripe publishable key
 
 export function CartComponent() {
   const { cartItems, setCartItems, totalItems, settotalItems } = useContext(CartContext);
@@ -78,36 +75,6 @@ export function CartComponent() {
     setQuantitytotal(quantitytotal - 1);
     setTotal(total - item.price);
   };
-
-    const handleCheckout = async () => {
-      try {
-        const requestURL = "http://localhost:8000/create-checkout-session";
-        const requestData = {
-          TotalItems: quantitytotal,
-          TotalPrice: total, // Convert dollars to cents
-        };
-
-        const response = await axios.post(requestURL, requestData);
-        if (!response) {
-          console.log("ERROR OCCURRED");
-          return;
-        }
-
-        const { id } = response.data;
-        const stripe = await stripePromise;
-
-        // Redirect to Stripe Checkout
-        const { error} = await stripe?.redirectToCheckout({
-          sessionId: id,
-        });
-
-        if (error) {
-          console.error('Stripe Checkout Error:', error);
-        }
-      } catch (error) {
-        console.log("SOME ERROR OCCURRED", error);
-      }
-    };
 
   return (
     <Sheet>
@@ -260,22 +227,3 @@ export function CartComponent() {
   );
 }
 
-function XIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  );
-}

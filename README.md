@@ -37,7 +37,7 @@ npm install
 
 ## Usage
 
-Once the installation is complete, start the backend server and the frontend development server. The application will run on `http://localhost:5173` for the frontend and `http://localhost:8000` for the backend.
+Once the installation is complete, start the backend server and the frontend development server. The application will run on `http://localhost:5173` for the frontend and `https://cartx-api.vercel.app` for the backend.
 
 ```bash
 # Start backend server

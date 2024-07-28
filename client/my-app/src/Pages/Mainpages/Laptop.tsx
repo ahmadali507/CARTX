@@ -3,7 +3,6 @@ import Navbar from '@/components/Comp/Navbar'
 import React, { useEffect, useState } from 'react'
 import useCustomQuery from '@/components/Comp/hooks/useCustomQuery'
 import DisplayItems, { DisplayItemsProps } from '@/components/Comp/DisplayItems'
-import { CardProps } from '@/components/ui/CustomCard'
 import Newsletter from '@/components/Comp/Newsletter'
 import Footer from '@/components/Comp/Footer'
 
