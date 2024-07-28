@@ -10,7 +10,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from '../ui/button';
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
 
 export type itemData = {
     name: string;
@@ -70,8 +70,21 @@ const AddItems = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+            toast.success(
+                <div>
+                    <h3>Success</h3>
+                    <p>Your item was added.</p>
+                </div>
+            )
             console.log('Response data:', response.data);
         } catch (error: any) {
+            
+            toast.error(
+                <div>
+                    <h3>ERROR</h3>
+                    <p>Your item was not added.</p>
+                </div>
+            )
             console.error('Error adding item:', error.message);
         }
     };
@@ -185,20 +198,7 @@ const AddItems = () => {
                     </DialogContent>
                 )}
             </Dialog>
-            <Toaster  toastOptions={{
-                duration : 3000 , 
-                style  : {
-                    backgroundColor : 'whitesmoke', 
-                    WebkitBackdropFilter : 'opacity(50%)',
-                    color : 'gray', 
-                    width : '40%', 
-                    textAlign : 'center', 
-                    fontSize : '1rem',
-                    fontFamily : 'sans-serif', 
-                    borderRadius : '1rem',
-                    height : '5rem'
-                }
-            }}/>
+            <ToastContainer/>
         </div>
     );
 };

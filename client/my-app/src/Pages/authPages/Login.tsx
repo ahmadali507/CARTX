@@ -7,6 +7,7 @@ import axios from "axios";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {ToastContainer , toast} from 'react-toastify'
 
 const LoginSchema = z.object({
   email: z.string().email({ message: "Email format is not correct" }),
@@ -35,6 +36,12 @@ function SignInPage() {
       .post(requestUrl, data)
       .then((res) => {
         const { token, status } = res.data;
+        toast.success(
+          <div>
+            <h3>Success</h3>
+            <p>User Signed in Successfully</p>
+          </div>
+        )
         if (token) {
           localStorage.setItem("token", token); // Store token in localStorage
           setResponse(true);
@@ -46,6 +53,12 @@ function SignInPage() {
         }
       })
       .catch((err) => {
+        toast.error(
+          <div>
+            <h3>error</h3>
+            <p>User Sign in failed</p>
+          </div>
+        )
         console.error(err);
         setResponse(false);
         setShowDialogue(err.response?.data?.error || "An error occurred");
@@ -115,6 +128,7 @@ function SignInPage() {
           </form>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 }

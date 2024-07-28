@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -40,6 +41,13 @@ export function ContactUsForm() {
         }
       });
       console.log("Form submitted successfully:", response.data);
+
+      toast.success(
+        <div>
+          <h3 className="text-center">Success</h3>
+          <p>Email sent to the Company.</p>
+        </div>
+      )
       // Handle success response
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -184,6 +192,7 @@ export function ContactUsForm() {
           </div>
         </div>
       </footer>
+      <ToastContainer/>
     </div>
   );
 }

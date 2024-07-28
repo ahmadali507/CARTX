@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import {ToastContainer, toast} from 'react-toastify'
 
 // Define a zod schema for the username, email, and password
 const SignUpSchema = z.object({
@@ -40,8 +41,20 @@ const SignUpPage = () => {
         console.log(res.data);
         setResponse(true);
         setShowDialogue("USER SIGNED UP SUCCESSFULLY");
+        toast.success(
+          <div>
+            <h3>Success</h3>
+            <p>User Signed Up Successfully</p>
+          </div>
+        )
       })
       .catch((err) => {
+        toast.error(
+          <div>
+            <h3>Error</h3>
+            <p>User SignUp Failed</p>
+          </div>
+        )
         setShowDialogue(err.response?.data?.error || "An error occurred");
         setResponse(false);
       });
@@ -113,6 +126,7 @@ const SignUpPage = () => {
           </CardFooter>
         </Card>
       </form>
+      <ToastContainer/>
     </div>
   );
 };
