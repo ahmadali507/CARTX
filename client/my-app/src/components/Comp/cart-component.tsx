@@ -82,7 +82,7 @@ export function CartComponent() {
         <Button
           variant="outline"
           onClick={handleClick}
-          className="relative bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          className="fixed right-12 bottom-12 bg-green-700 text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         >
           <ShoppingCart />
           {totalItems > 0 && (
