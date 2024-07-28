@@ -20,7 +20,7 @@ function Home() {
   // console.log(displayData); 
   
   return (
-    <>
+    <div className="m-0 min-h-screen bg-black">
     <Navbar/>
     <Hero 
         title = "Welcome to the CARTX"
@@ -31,7 +31,7 @@ function Home() {
     <Services></Services>
     <Newsletter></Newsletter>
     <Footer></Footer>
-    </>
+    </div> 
   )
 }
 

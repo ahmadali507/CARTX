@@ -7,39 +7,37 @@ import {
 } from "@/components/ui/card";
 import AddtoCart from "./AddtoCart";
 
-
-export  type CardProps = {
-    description: string,
-    imgUrl: string,
-    name: string,
-    price: number,
-    brand : string, 
-    id?: string | null | undefined, 
-    __v?: number, 
-    category?: string  | undefined, 
+export type CardProps = {
+  description: string,
+  imgUrl: string,
+  name: string,
+  price: number,
+  brand: string, 
+  id?: string | null | undefined, 
+  __v?: number, 
+  category?: string | undefined, 
 }
 
-const CustomCard  = ({ item }  : {item: CardProps}) => {
-
-  // console.log(item)
+const CustomCard = ({ item }: { item: CardProps }) => {
   return (
     <div>
-      <Card className="bg-slate-950 h-auto md:w-[20vw] lg:md:w-[20vw] sm:w-32 border-[3px] border-slate-900 shadow-lg shadow-slate-800 hover:shadow-slate-400">
+      <Card className="bg-slate-950 h-auto md:w-[20vw] lg:w-[20vw] sm:w-32 border-[3px] border-slate-900 shadow-lg shadow-slate-800 hover:shadow-slate-400 flex flex-col">
         <CardHeader className="flex flex-col justify-center items-center">
-          <CardTitle className="text-center font-mono text-white">{item.name}</CardTitle>
-          <img src={item.imgUrl} alt="" height={200} width={300} className= "border-5 border-red-700  h-[14rem] w-[90%] bg-cover" />
+          <CardTitle className="text-center font-mono text-white mb-2">{item.name}</CardTitle>
+          <div className="relative w-[92%] h-[14rem] overflow-hidden">
+            <img 
+              src={item.imgUrl} 
+              alt={item.name} 
+              className="object-cover w-full h-full"
+            />
+          </div>
         </CardHeader>
         <CardContent>
-          <p className="text-center text-bg-slate-200 font-medium text-xl text-slate-200 h-[5rem]">{item.description}</p>
+          <p className="text-center text-bg-slate-200 font-medium text-xl text-slate-200 h-[5rem] overflow-hidden">{item.description}</p>
         </CardContent>
-        <CardFooter className="flex justify-between items-start  flex-shrink-0">
-          <p className="text-[1.4rem] font-thin font-mono text-slate-200  w-32 h-8">$ {item.price}</p>
-          {/* <Button className="w-24 h-10 text-[0.9rem] bg-green-700 relative bottom-1">Add item</Button>
-           */}
-          {/* <ShoppingCart className="w-24 h-10 text-[0.9rem] color-white relative bottom-1"/>
-           */}
-             {/* <ShoppingCart size={36} color="#ffffff" strokeWidth={2.5} absoluteStrokeWidth className="hover:bg-slate-800 border-5 rounded-lg "/> */}
-              <AddtoCart item = {item}/>
+        <CardFooter className="flex justify-between items-center">
+          <p className="text-[1.4rem] font-thin font-mono text-slate-200 w-32 h-8">${item.price}</p>
+          <AddtoCart item={item} />
         </CardFooter>
       </Card>
     </div>

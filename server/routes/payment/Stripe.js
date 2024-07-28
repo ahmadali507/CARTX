@@ -94,8 +94,8 @@ PaymentRouter.post('/create-checkout-session', async (req, res) => {
         }
       },
       mode: 'payment',
-      success_url: 'https://Cartx-mern507.netlify.app/success', // Your success URL
-      cancel_url: 'https://Cartx-mern507.netlify.app/cancel', // Your cancel URL
+      success_url: 'https://cartx-mern507.netlify.app/success', // Your success URL
+      cancel_url: 'https://cartx-mern507.netlify.app/cancel', // Your cancel URL
     });
 
     res.json({ id: session.id });

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   Sheet,
   SheetTrigger,
@@ -20,14 +20,12 @@ import CheckOutDialog from "../ui/CheckOutDialog";
 
 export function CartComponent() {
   const { cartItems, setCartItems, totalItems, settotalItems } = useContext(CartContext);
-  const [showCart, setShowCart] = useState(false);
+  // const [showCart, setShowCart] = useState(false);
   const { total, setTotal, quantitytotal, setQuantitytotal } = useContext(TotalPriceContext);
 
   console.log(cartItems);
 
-  const handleClick = () => {
-    setShowCart(!showCart);
-  };
+  
 
   const removeFromCart = (item: CardProps) => {
     const findItem = cartItems.find((cartItem) => cartItem.item.name === item.name);
@@ -81,8 +79,7 @@ export function CartComponent() {
       <SheetTrigger asChild>
         <Button
           variant="outline"
-          onClick={handleClick}
-          className="fixed right-12 bottom-12 bg-green-700 text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          className="fixed right-12 top-24 bg-green-700 text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         >
           <ShoppingCart />
           {totalItems > 0 && (
@@ -94,9 +91,9 @@ export function CartComponent() {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className={`transition-all duration-300 ${
-          showCart ? "visible opacity-100" : "invisible opacity-0"
-        } bg-black p-6 rounded-lg shadow-lg`}
+        className={`transition-all duration-300 
+           visible opacity-100
+        bg-black p-6 rounded-lg shadow-lg`}
       >
         <SheetHeader>
           <SheetTitle className="flex justify-between items-center text-2xl font-bold text-white">
