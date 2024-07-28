@@ -17,7 +17,7 @@ const PaymentRouter = require('./routes/payment/Stripe');
 
 
 const corsOptions = {
-    origin: 'https://Cartx-mern507.vercel.app', // Replace with your production frontend URL
+    origin: 'https://Cartx-mern507.netlify.app', // Replace with your production frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -32,10 +32,9 @@ require('dotenv').config();
 
 
 app.get('/', (req, res)=>{
-    res.json({
-        success : true, 
-        data : "HEELLo", 
-    })
+    res.send(
+        "hello"
+    )
 })
 
 
