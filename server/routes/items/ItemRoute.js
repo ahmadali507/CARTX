@@ -8,7 +8,6 @@ const Brand = require('../../models/brand');
 const ItemRouter = express.Router();
 require('dotenv').config();
 
-
 // Cloudinary configuration
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -31,7 +30,7 @@ function checkFileType(file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype);
-    
+
     if (mimetype && extname) {
         return cb(null, true);
     } else {
@@ -46,9 +45,8 @@ const upload = multer({
     }
 });
 
-
 // Route to add a new item
-ItemRouter.post('/additem', verifyToken, upload.single('photo'), async (req, res) => {
+ItemRouter.post('/additem', verifyToken, upload.single('image'), async (req, res) => {
     try {
         const { name, description, category, price, brand } = req.body;
         const result = await cloudinary.uploader.upload(req.file.path, {
