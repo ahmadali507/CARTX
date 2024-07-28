@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const nodemailer = require('nodemailer');
 const Coupon = require('../../models/coupon');
+const verifyToken = require('../../middlewares/auth');
 
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 const PaymentRouter = express.Router();
@@ -61,7 +62,7 @@ PaymentRouter.post('/generate-coupon', async (req, res) => {
 });
 
 // Route to create a checkout session
-PaymentRouter.post('/create-checkout-session', async (req, res) => {
+PaymentRouter.post('/create-checkout-session',verifyToken,  async (req, res) => {
   const { totalPrice, totalItems,  couponCode } = req.body
 
   try {
