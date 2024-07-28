@@ -20,7 +20,7 @@ const CheckOutDialog: React.FC<CouponDialogT> = ({ TotalPrice, TotalItems } ) =>
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-        const requestURL = 'http://localhost:8000/create-checkout-session';
+        const requestURL = 'https://cartx-api.vercel.app/create-checkout-session';
         const requestData = {
             totalItems: TotalItems,
             totalPrice: TotalPrice,

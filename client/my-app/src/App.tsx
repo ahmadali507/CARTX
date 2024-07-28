@@ -40,10 +40,7 @@ const App: React.FC = () => {
                   <Route path="/auth/signIn" element={<SignInPage />} />
                   <Route path="/success" element={<SuccessPayment />} />
                   <Route path="/cancel" element={<UnsuccessfulPayment />} />
-                  <Route
-                    path="/auth/forget-password"
-                    element={<ForgetPassword />}
-                  />
+                  <Route path="/auth/forget-password"  element={<ForgetPassword />}/>
                   <Route path="/auth/signUp" element={<SignUpPage />} />
                 </Routes>
               </Router>

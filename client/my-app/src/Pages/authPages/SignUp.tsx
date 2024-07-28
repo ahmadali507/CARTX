@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 // Define a zod schema for the username, email, and password
 const SignUpSchema = z.object({
@@ -105,9 +106,9 @@ const SignUpPage = () => {
             </Button>
             <div className="text-white mt-4">
               Already Signed Up?{" "}
-              <a href="/auth/signIn" className="text-blue-400 text-[1.4rem]">
+              <Link to="/auth/signIn" className="text-blue-400 text-[1.4rem]">
                 Sign In
-              </a>
+              </Link>
             </div>
           </CardFooter>
         </Card>
