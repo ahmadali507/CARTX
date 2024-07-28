@@ -6,6 +6,7 @@ const Item = require('../../models/Item');
 const verifyToken = require('../../middlewares/auth');
 const Brand = require('../../models/brand');
 const ItemRouter = express.Router();
+const path = require('path')
 require('dotenv').config();
 
 // Cloudinary configuration
