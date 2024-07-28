@@ -82,7 +82,7 @@ PaymentRouter.post('/create-checkout-session', async (req, res) => {
             product_data: {
               name: 'Cart Total',
             },
-            unit_amount: totalPrice, // Convert dollars to cents
+            unit_amount: totalPrice*100, // Convert dollars to cents
           },
           quantity: totalItems,
         },

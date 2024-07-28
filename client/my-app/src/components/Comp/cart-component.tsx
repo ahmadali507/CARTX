@@ -117,7 +117,7 @@ export function CartComponent() {
               Your cart is empty.
             </div>
           ) : (
-            <div className="grid gap-4 max-h-[37vh] overflow-y-auto hide-scrollbar">
+            <div className="grid gap-4 max-h-[30vh] overflow-y-auto hide-scrollbar">
               {cartItems.map((cartItem, index) => (
                 <div
                   key={index}
