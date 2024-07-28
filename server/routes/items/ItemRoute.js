@@ -1,37 +1,31 @@
 const express = require('express');
-const path = require('path');
 const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const Item = require('../../models/Item');
-const verifyToken = require('../../middlewares/auth')
-const Brand = require('../../models/brand')
-const cloudinary = require('cloudinary').v2
+const verifyToken = require('../../middlewares/auth');
+const Brand = require('../../models/brand');
 const ItemRouter = express.Router();
 require('dotenv').config();
-// Multer storage configuration
-cloudinary.config({
-    cloud_name : process.env.CLOUD_NAME, 
-    api_key : process.env.CLOUD_KEY, 
-    api_secret : process.env.CLOUD_SECRET, 
-})
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../../uploads'));
+// Cloudinary configuration
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_KEY,
+    api_secret: process.env.CLOUD_SECRET,
+});
+
+// Multer storage configuration for Cloudinary
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'uploads',
+        format: async (req, file) => 'png', // supports promises as well
+        public_id: (req, file) => req.body.name,
     },
-    filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname);
-        cb(null, req.body.name + ext); // Append the original file extension
-    }
 });
 
 // File filter function to check the file type
-const upload = multer({
-    storage: storage,
-    fileFilter: function(req, file, cb) {
-        checkFileType(file, cb);
-    }
-});
-
 function checkFileType(file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -44,38 +38,40 @@ function checkFileType(file, cb) {
     }
 }
 
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+    }
+});
+
 // Route to add a new item
-ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, res, next) => {
+ItemRouter.post('/additem', verifyToken, upload.single('photo'), async (req, res) => {
     try {
+        const { name, description, category, price, brand } = req.body;
         const result = await cloudinary.uploader.upload(req.file.path, {
-            resource_type : 'image'    
-           })
-        console.log(req.body)
-        console.log(req.file)
-        const { name, description, category, price , brand} = req.body
-        const imgUrl = `/uploads/${req.file.filename}`; // Relative URL
-       console.log(imgUrl)
+            resource_type: 'image'
+        });
+        
         const item = new Item({
             name,
             description,
             category,
             price,
-            imgUrl : result.secure_url, 
+            imgUrl: result.secure_url,
             brand,
         });
 
         const newBrand = new Brand({
-            brand, 
+            brand,
             category,
-        })
+        });
 
-        const savedBrand =  await newBrand.save(); 
-        console.log(savedBrand); 
+        await newBrand.save();
         const savedItem = await item.save();
-        console.log(savedItem); 
+
         return res.status(200).json(savedItem);
     } catch (err) {
-        console.log("some error occured")
         return res.status(400).json({ error: err.message });
     }
 });
@@ -83,18 +79,17 @@ ItemRouter.post('/additem',  verifyToken,  upload.single('photo'), async (req, r
 // Route to get items by category
 ItemRouter.get('/additem/:category', async (req, res) => {
     try {
-        const category = req.params.category; 
-        if(category === 'all'){
-            const allItems = await Item.find(); 
-            return res.status(200).json({items : allItems});
+        const category = req.params.category;
+        if (category === 'all') {
+            const allItems = await Item.find();
+            return res.status(200).json({ items: allItems });
         }
         const requiredItems = await Item.find({ category: req.params.category });
-        const requiredBrands = await Brand.find({category : req.params.category}); 
-        return res.status(200).json({items : requiredItems, brands : requiredBrands});
+        const requiredBrands = await Brand.find({ category: req.params.category });
+        return res.status(200).json({ items: requiredItems, brands: requiredBrands });
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 });
-
 
 module.exports = ItemRouter;
