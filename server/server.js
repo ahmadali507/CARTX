@@ -32,9 +32,7 @@ require('dotenv').config();
 
 
 app.get('/', (req, res)=>{
-    res.send(
-        "hello"
-    )
+    return res.send("hello")
 })
 
 
