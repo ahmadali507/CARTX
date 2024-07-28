@@ -7,6 +7,8 @@ const verifyToken = require('../../middlewares/auth');
 const Brand = require('../../models/brand');
 const ItemRouter = express.Router();
 require('dotenv').config();
+const cors = require('cors'); 
+
 
 // Cloudinary configuration
 cloudinary.config({
@@ -30,7 +32,7 @@ function checkFileType(file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype);
-
+    
     if (mimetype && extname) {
         return cb(null, true);
     } else {
@@ -45,6 +47,14 @@ const upload = multer({
     }
 });
 
+const corsOptions = {
+    origin: 'https://cartx-mern507.netlify.app', // Replace with your production frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+  };
+
+ItemRouter.use(cors(corsOptions));
 // Route to add a new item
 ItemRouter.post('/additem', verifyToken, upload.single('photo'), async (req, res) => {
     try {
