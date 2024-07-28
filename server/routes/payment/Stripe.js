@@ -62,7 +62,7 @@ PaymentRouter.post('/generate-coupon', async (req, res) => {
 });
 
 // Route to create a checkout session
-PaymentRouter.post('/create-checkout-session',verifyToken,  async (req, res) => {
+PaymentRouter.post('/create-checkout-session',  async (req, res) => {
   const { totalPrice, totalItems,  couponCode } = req.body
 
   try {
