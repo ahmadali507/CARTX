@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Axios from 'axios';
 import { useQueryClient, useMutation } from 'react-query';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
     Dialog,
     DialogContent,

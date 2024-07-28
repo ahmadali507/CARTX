@@ -8,6 +8,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {ToastContainer , toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginSchema = z.object({
   email: z.string().email({ message: "Email format is not correct" }),
