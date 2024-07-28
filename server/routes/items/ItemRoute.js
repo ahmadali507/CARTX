@@ -46,7 +46,7 @@ const upload = multer({
 });
 
 // Route to add a new item
-ItemRouter.post('/additem', verifyToken, upload.single('image'), async (req, res) => {
+ItemRouter.post('/additem', verifyToken, upload.single('photo'), async (req, res) => {
     try {
         const { name, description, category, price, brand } = req.body;
         const result = await cloudinary.uploader.upload(req.file.path, {
