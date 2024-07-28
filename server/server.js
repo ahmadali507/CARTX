@@ -17,7 +17,7 @@ const PaymentRouter = require('./routes/payment/Stripe');
 
 
 const corsOptions = {
-    origin: 'http://localhost:5173', // Replace with your production frontend URL
+    origin: 'https://Cartx-mern507.vercel.app', // Replace with your production frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -30,6 +30,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 require('dotenv').config();
 
+
+app.get('/', (req, res)=>{
+    res.json({
+        success : true, 
+        data : "HEELLo", 
+    })
+})
 
 
 app.use('/auth',register,SignIn,forgetPassRoute); 
