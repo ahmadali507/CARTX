@@ -16,6 +16,8 @@ import { ShoppingCart, Trash2, X } from "lucide-react";
 import "../../index.css";
 import axios from "axios";
 import { loadStripe } from '@stripe/stripe-js';
+import CouponDialog from "../ui/MyDialog";
+import CheckOutDialog from "../ui/CheckOutDialog";
 
 const stripePromise = loadStripe('pk_test_51PZJNaDJuXMaBWwvaVH9rpEbJayHEH5fYIkT9PGep4kRvjRZYpfEG4BJPgCMlD3OyaE1ksAQlj5U5OcqppqcqnEg00NoCjlzdv'); // Add your Stripe publishable key
 
@@ -36,6 +38,7 @@ export function CartComponent() {
     if (findItem) {
       setTotal(total - findItem.totalPrice);
       setQuantitytotal(quantitytotal - findItem.quantity);
+      settotalItems(totalItems - findItem.quantity); 
       setCartItems(cartItems.filter((cartItem) => cartItem.item.name !== item.name));
     }
   };
@@ -76,35 +79,35 @@ export function CartComponent() {
     setTotal(total - item.price);
   };
 
-  const handleCheckout = async () => {
-    try {
-      const requestURL = "http://localhost:8000/create-checkout-session";
-      const requestData = {
-        TotalItems: quantitytotal,
-        TotalPrice: total * 100, // Convert dollars to cents
-      };
+    const handleCheckout = async () => {
+      try {
+        const requestURL = "http://localhost:8000/create-checkout-session";
+        const requestData = {
+          TotalItems: quantitytotal,
+          TotalPrice: total, // Convert dollars to cents
+        };
 
-      const response = await axios.post(requestURL, requestData);
-      if (!response) {
-        console.log("ERROR OCCURRED");
-        return;
+        const response = await axios.post(requestURL, requestData);
+        if (!response) {
+          console.log("ERROR OCCURRED");
+          return;
+        }
+
+        const { id } = response.data;
+        const stripe = await stripePromise;
+
+        // Redirect to Stripe Checkout
+        const { error} = await stripe?.redirectToCheckout({
+          sessionId: id,
+        });
+
+        if (error) {
+          console.error('Stripe Checkout Error:', error);
+        }
+      } catch (error) {
+        console.log("SOME ERROR OCCURRED", error);
       }
-
-      const { id } = response.data;
-      const stripe = await stripePromise;
-
-      // Redirect to Stripe Checkout
-      const { error} = await stripe?.redirectToCheckout({
-        sessionId: id,
-      });
-
-      if (error) {
-        console.error('Stripe Checkout Error:', error);
-      }
-    } catch (error) {
-      console.log("SOME ERROR OCCURRED", error);
-    }
-  };
+    };
 
   return (
     <Sheet>
@@ -147,7 +150,7 @@ export function CartComponent() {
               Your cart is empty.
             </div>
           ) : (
-            <div className="grid gap-4 max-h-[40vh] overflow-y-auto hide-scrollbar">
+            <div className="grid gap-4 max-h-[37vh] overflow-y-auto hide-scrollbar">
               {cartItems.map((cartItem, index) => (
                 <div
                   key={index}
@@ -235,12 +238,20 @@ export function CartComponent() {
                   <div className="font-bold text-xl">${(total * 1.05).toFixed(2)}</div>
                 </div>
               </div>
-              <Button
-                className="mt-4 bg-green-600 w-full text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                onClick={handleCheckout}
+              {/* <Button
+                class              <CheckOutDialog
+                TotalPrice = {total}
+                TotalItems = {totalItems}
+              />eckout}
               >
-                Checkout
-              </Button>
+                  
+                </Button> */}
+              <CouponDialog/>
+              <CheckOutDialog
+                TotalPrice = {total}
+                TotalItems = {totalItems}
+             />
+
             </div>
           </SheetFooter>
         </SheetDescription>
