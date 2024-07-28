@@ -67,7 +67,7 @@ const SignUpPage = () => {
               <Input
                 id="username"
                 placeholder="Enter your username"
-                className="bg-muted text-white"
+                className="bg-black text-white"
                 {...register("username")}
               />
               {errors.username && <span className="text-red-500">{errors.username.message}</span>}
@@ -80,7 +80,7 @@ const SignUpPage = () => {
                 id="email"
                 type="email"
                 placeholder="Enter your email"
-                className="bg-muted text-white"
+                className="bg-black text-white"
                 {...register("email")}
               />
               {errors.email && <span className="text-red-500">{errors.email.message}</span>}
@@ -93,7 +93,7 @@ const SignUpPage = () => {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                className="bg-muted text-white"
+                className="bg-black text-white"
                 {...register("password")}
               />
               {errors.password && <span className="text-red-500">{errors.password.message}</span>}
