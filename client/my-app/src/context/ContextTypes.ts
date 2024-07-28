@@ -1,4 +1,3 @@
-import { itemData } from "@/components/Comp/Additems";
 import { CardProps } from "@/components/ui/CustomCard";
 import React from "react";
 

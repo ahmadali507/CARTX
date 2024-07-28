@@ -1,6 +1,5 @@
 import { CarouselItem } from "@/components/ui/carousel";
 import CustomCard, { CardProps } from "@/components/ui/CustomCard";
-import React from "react";
 
 const CarouselSingleItem = ({ items }: { items: CardProps[] | undefined }) => {
   return (

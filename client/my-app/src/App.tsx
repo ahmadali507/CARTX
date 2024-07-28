@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  BrowserRouter,
 } from "react-router-dom";
 import Laptop from "./Pages/Mainpages/Laptop";
 import Clothes from "./Pages/Mainpages/Clothes";

@@ -4,7 +4,6 @@ import Hero from '@/components/Comp/Hero'
 import Navbar from '@/components/Comp/Navbar'
 import Newsletter from '@/components/Comp/Newsletter'
 import useCustomQuery from '@/components/Comp/hooks/useCustomQuery'
-import { CardProps } from '@/components/ui/CustomCard'
 import React, { useEffect, useState } from 'react'
 
 const Tech: React.FC = () => {

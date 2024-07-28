@@ -1,6 +1,4 @@
 import { CardProps } from '@/components/ui/CustomCard'
-import React from 'react'
-import Carousel from './Carousel'
 import MainCarousel from './MainCarousel'
 import { Typewriter } from 'react-simple-typewriter'
 
