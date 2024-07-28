@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
                             {/* Add your navigation links here */}
                             <Link  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" to = '/'>Home</Link>
                             <Link to = '/aboutUs'  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">About</Link>
-                            <Link  to = 'Contact' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Contact</Link>
+                            <Link  to = '/Contact' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Contact</Link>
                         </div>
                     </div>
 
