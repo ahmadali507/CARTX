@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
         <nav className="bg-black sticky top-0 z-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-center h-16">
-                    <div className="flex items-center">
+                    <div className="flex items">
                         <div className="absolute top-4 left-12 flex-shrink-0 ">
                             {/* Add your logo or brand here */}
                             <span className="text-white font-semibold text-lg">Logo</span>

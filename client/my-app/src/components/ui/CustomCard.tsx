@@ -33,10 +33,10 @@ const CustomCard = ({ item }: { item: CardProps }) => {
           </div>
         </CardHeader>
         <CardContent>
-          <p className="text-center text-bg-slate-200 font-medium text-xl text-slate-200 h-[5rem] overflow-hidden">{item.description}</p>
+          <p className="text-center text-bg-slate-200 font-medium text-xl text-slate-200 h-[5rem] overflow-ellipsis">{item.description}</p>
         </CardContent>
         <CardFooter className="flex justify-between items-center">
-          <p className="text-[1.4rem] font-thin font-mono text-slate-200 w-32 h-8">${item.price}</p>
+          <p className="text-[1.4rem] font-thin font-mono text-slate-200 w-32 h-8 overflow-x-auto">${item.price}</p>
           <AddtoCart item={item} />
         </CardFooter>
       </Card>

@@ -23,9 +23,12 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
+import { TotalPriceContext } from "@/context/context"
+import { useContext } from "react";
 import {Link} from "react-router-dom"
 
 export function SuccessPayment() {
+  const {total} = useContext(TotalPriceContext);
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-md text-center">
@@ -41,7 +44,7 @@ export function SuccessPayment() {
         <div className="grid gap-4">
           <div className="grid grid-cols-2 items-center">
             <p className="text-muted-foreground">Amount:</p>
-            <p className="text-right font-medium">$49.99</p>
+            <p className="text-right font-medium">${total}</p>
           </div>
           <div className="grid grid-cols-2 items-center">
             <p className="text-muted-foreground">Payment Method:</p>

@@ -181,7 +181,7 @@ export function ContactUsForm() {
           </div>
         </div>
       </section>
-      <footer className="bg-muted py-6 text-muted-foreground">
+      <footer className="bg-slate-900 py-6 text-slate-200">
         <div className="container flex items-center justify-between px-4 md:px-6">
           <p className="text-sm">&copy; 2024 CARTX. All rights reserved.</p>
           <div className="flex items-center gap-4">

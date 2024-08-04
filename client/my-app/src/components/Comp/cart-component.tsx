@@ -71,7 +71,10 @@ export function CartComponent() {
     );
     settotalItems(totalItems - 1);
     setQuantitytotal(quantitytotal - 1);
+    if(quantitytotal > 0)
     setTotal(total - item.price);
+    else 
+    setTotal(0); 
   };
 
   return (
@@ -129,7 +132,7 @@ export function CartComponent() {
                             {cartItem.item.name}
                           </span>
                         </div>
-                        <div className=" w-full h-16 mt-1">
+                        <div className=" w-full h-16 mt-1 overflow-ellipsis">
                           {cartItem.item.description}
                         </div>
                       </div>
